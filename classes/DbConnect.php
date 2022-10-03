@@ -1,21 +1,22 @@
 <?php 
 
-class DbConnect 
+class DbConnect
 {
-    public function connect() 
+    private $host = 'localhost';
+    private $dbName = 'automapa';
+    private $user = 'postgres';
+    private $pass = 'postgres';
+    private $charset = 'utf8';
+    private $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, PDO::ATTR_EMULATE_PREPARES => false,];
+    protected $pdo;
+
+    public function __construct()
     {
-        $servername = "localhost";
-        $username = "postgres";
-        $password = "postgres";
-        $dbname = "automapa_task";
-
-        $conn = pg_connect("host=$servername dbname=$dbname user=$username password=$password");
-
-        // if conn fail
-        if (!$conn) {
-            die("Connection failed: " . pg_connect_error());
+        $dsn = "pgsql:host=$this->host;port=5432;dbname=$this->dbName;user=$this->user;password=$this->pass";
+        try {
+            $this->pdo = new PDO($dsn, $this->user, $this->pass, $this->options);
+        } catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
-
-        return $conn;
     }
 }
