@@ -11,6 +11,7 @@ class MainController
         include_once('../classes/P_object.php');
         include_once('../classes/DbConnect.php');
         include_once('./CategoryController.php');
+        include_once('./PictureController.php');
         include_once('./P_objectController.php');
     }
 
@@ -26,6 +27,9 @@ class MainController
                 break;
             case 'GetAllShapes':
                 $this->ajaxProcessGetAllShapes($payload);
+                break;
+            case 'DeletePicture':
+                $this->ajaxProcessDeletePicture($payload);
                 break;
         }
     }
@@ -64,6 +68,14 @@ class MainController
         $result = $p_objectController->getAllPObjectsByPictureId($payload['id_picture']);
 
         echo json_encode($result);
+    }
+
+    public function ajaxProcessDeletePicture($payload)
+    {
+        $pictureController = new PictureController();
+        $pictureController->removePicture($payload['id_picture']);
+
+        echo json_encode(true);
     }
 }
 

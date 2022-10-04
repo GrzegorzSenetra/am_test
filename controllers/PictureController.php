@@ -22,4 +22,9 @@ class PictureController
 
         return $result;
     }
+
+    public function removePicture($id_picture)
+    {
+        return $this->picture->removePicture($id_picture);
+    }
 }
