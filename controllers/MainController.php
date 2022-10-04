@@ -42,6 +42,8 @@ class MainController
     {
         $p_objectController = new P_objectController();
 
+        $p_objectController->removeAllPObjectsByPictureId($payload['id_picture']);
+
         foreach ($payload['objects'] as $p_obj)
         {
             $p_objectController->addPObject(
@@ -51,6 +53,7 @@ class MainController
                 , (float) $p_obj['y']
                 , (float) $p_obj['w']
                 , (float) $p_obj['h']
+                , (string) $p_obj['category_name']
             );
         }
     }

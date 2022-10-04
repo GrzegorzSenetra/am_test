@@ -17,13 +17,18 @@ class P_objectController
         return $result;
     }
 
-    public function addPObject($id_category, $id_product, $x, $y, $w, $h)
+    public function addPObject($id_category, $id_product, $x, $y, $w, $h, $category_name)
     {
-        return $this->p_object->addPObject($id_category, $id_product, $x, $y, $w, $h);
+        return $this->p_object->addPObject($id_category, $id_product, $x, $y, $w, $h, $category_name);
     }
 
     public function getAllPObjectsByPictureId($id_picture)
     {
         return $this->p_object->getAllPObjectsByPictureId($id_picture);
+    }
+
+    public function removeAllPObjectsByPictureId($id_picture)
+    {
+        return $this->p_object->removeAllPObjectsByPictureId($id_picture);
     }
 }
