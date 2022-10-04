@@ -4,6 +4,13 @@
     $pictureController = new PictureController();
     $current_picture = $pictureController->getCurrentPicture();
 
-?>
+    $image_size = getimagesize(__PICTURES__.'/'.$current_picture['file_path']);
 
-<img src="<?php echo __PICTURES__.'/'.$current_picture['file_path'] ?>" alt="pic" />
+?>
+<div id="img_path" style="display: none"><?php echo __PICTURES__.'/'.$current_picture['file_path'] ?></div>
+<canvas 
+    id = "canvas"
+    width="<?php echo $image_size[0] ?>" 
+    height="<?php echo $image_size[1] ?>"></canvas>
+
+<!-- <img src="<?php echo __PICTURES__.'/'.$current_picture['file_path'] ?>" alt="pic" /> -->

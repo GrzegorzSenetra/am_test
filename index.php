@@ -20,5 +20,6 @@
     <?php include_once(dirname(__FILE__).'/template/header.php'); ?>
     <?php include_once(dirname(__FILE__).'/template/content.php'); ?>
     <script src='./template/js/actions.js'></script>
+    <script src='./template/js/canvas.js'></script>
 </body>
 </html>
