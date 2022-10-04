@@ -22,3 +22,20 @@ $('#add_category_button').click(function() {
     
 });
 
+const handleDeletePicture = (id_picture) => {
+    console.log(id_picture);
+
+    $.ajax({
+        url: '/controllers/MainController.php',
+        type: 'POST',
+        data: {
+            action: 'DeletePicture',
+            payload: {
+                id_picture: id_picture
+            }
+        },
+        success: function(data) {
+            // window.location.href = '/index.php';
+        }
+    })
+}

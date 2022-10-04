@@ -106,9 +106,6 @@ function drawRects() {
 
 const add_objects = () =>{
 
-    console.log("rectObjects");
-    console.log(rectObjects);
-
     let selected_category_id = $('#category_select').val();
 
     if (selected_category_id && rectObjects.length > 0) {
