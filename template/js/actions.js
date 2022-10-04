@@ -39,3 +39,7 @@ const handleDeletePicture = (id_picture) => {
         }
     })
 }
+
+const handleChangePicture = (id_picture) => {
+    window.location.href = '/index.php?picture='+id_picture;
+}
