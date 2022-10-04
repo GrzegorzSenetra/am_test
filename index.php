@@ -1,6 +1,7 @@
 <?php include_once(dirname(__FILE__).'/config/defines.php'); ?>
 <?php include_once(__CLASSES__.'/Picture.php'); ?>
 <?php include_once(__CLASSES__.'/Category.php'); ?>
+<?php include_once(__CLASSES__.'/P_object.php'); ?>
 <?php include_once(__CLASSES__.'/DbConnect.php'); ?>
 
 <?php 
