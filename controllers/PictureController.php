@@ -9,56 +9,17 @@ class PictureController
         $this->picture = new Picture();
     }
 
-    public function index()
+    public function getAllPictures()
     {
-        $pictures = $this->picture->getAllPictures();
-        include_once('./views/pictures/index.php');
+        $result = $this->picture->getAllPictures();
+        return $result;
     }
 
-    public function show($id)
+    public function getCurrentPicture()
     {
-        $picture = $this->picture->getPictureById($id);
-        include_once('./views/pictures/show.php');
-    }
+        $picture = $_GET['picture'];
+        $result = $this->picture->getPicture($picture);
 
-    public function create()
-    {
-        include_once('./views/pictures/create.php');
-    }
-
-    public function store($name, $path, $description, $date)
-    {
-        $result = $this->picture->addPicture($name, $path, $description, $date);
-        if ($result) {
-            header('Location: ./index.php');
-        } else {
-            echo 'Something went wrong';
-        }
-    }
-
-    public function edit($id)
-    {
-        $picture = $this->picture->getPictureById($id);
-        include_once('./views/pictures/edit.php');
-    }
-
-    public function update($id, $name, $path, $description, $date)
-    {
-        $result = $this->picture->updatePicture($id, $name, $path, $description, $date);
-        if ($result) {
-            header('Location: ./index.php');
-        } else {
-            echo 'Something went wrong';
-        }
-    }
-
-    public function delete($id)
-    {
-        $result = $this->picture->deletePicture($id);
-        if ($result) {
-            header('Location: ./index.php');
-        } else {
-            echo 'Something went wrong';
-        }
+        return $result;
     }
 }
