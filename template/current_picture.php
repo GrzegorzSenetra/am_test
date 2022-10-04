@@ -15,5 +15,3 @@
     id = "canvas"
     width="<?php echo $image_size[0] ?>" 
     height="<?php echo $image_size[1] ?>"></canvas>
-
-<!-- <img src="<?php echo __PICTURES__.'/'.$current_picture['file_path'] ?>" alt="pic" /> -->

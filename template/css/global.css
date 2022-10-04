@@ -5,8 +5,40 @@
 
 #canvas {
     width: auto;
-    max-width: 900px;
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    border: solid 1px grey;
+    border-radius: 15px;
+
 }
+
+#add_category_button, #upload_submit {
+    width: 100%;
+}
+
+.divider {
+    width: 100%;
+    height: 20px;
+}
+
+.list-group-item {
+    cursor: pointer;
+}
+
+.list-group-item a {
+    color: #495057;
+    max-width: 50%;
+    word-wrap: break-word;
+}
+
+.active a {
+    color: white;
+}
+
+#delete-picture-button {
+    color: #f00;
+    position: relative;
+    float:right;
+}
+
