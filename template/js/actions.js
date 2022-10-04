@@ -35,7 +35,7 @@ const handleDeletePicture = (id_picture) => {
             }
         },
         success: function(data) {
-            // window.location.href = '/index.php';
+            window.location.href = '/index.php';
         }
     })
 }

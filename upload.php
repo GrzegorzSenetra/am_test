@@ -2,7 +2,7 @@
 
 
 $currentDirectory = getcwd();
-    $uploadDirectory = "./a_signs/";
+    $uploadDirectory = "/a_signs/";
 
     $errors = []; // Store errors here
 
@@ -12,7 +12,8 @@ $currentDirectory = getcwd();
     $fileSize = $_FILES['the_file']['size'];
     $fileTmpName  = $_FILES['the_file']['tmp_name'];
     $fileType = $_FILES['the_file']['type'];
-    $fileExtension = strtolower(end(explode('.',$fileName)));
+    $fileArr = explode('.', $fileName);
+    $fileExtension = strtolower(end($fileArr));
 
     $uploadPath = $currentDirectory . $uploadDirectory . basename($fileName); 
 
