@@ -6,20 +6,42 @@ var rectObjects = [];
 let drag = false;
 let background = null;
 
+let selected_category_id = $('#category_select').val();
+let selected_category_name = $( "#category_select option:selected" ).text();
+
 let rect = {};
 
-function Shape(x, y, w, h) {
+function Shape(x, y, w, h, category_id, category_name) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
+    this.category_id = category_id;
+    this.category_name = category_name;
 }
 
 let rectBCR = canvas.getBoundingClientRect();
 
+const getAllShapes = () => {
+    $.ajax({
+        url: '/controllers/MainController.php',
+        type: 'POST',
+        data: {
+            action: 'GetAllShapes',
+            payload: {
+                id_picture: document.getElementById('img_id').innerHTML
+            }
+        },
+        success: function(data) {
+            data = JSON.parse(data);
+            rectObjects = data;
+            drawRects();
+        }
+    });
+}
+
 function init() {
     const bgPath = document.getElementById('img_path').innerHTML;
-    // const bgPath = window.location.hostname + '/' + document.getElementById('img_path').innerHTML;
     console.log(bgPath);
     background = new Image();
     background.src = bgPath;
@@ -32,7 +54,7 @@ function init() {
     canvas.addEventListener('mouseup', mouseUp, false);
     canvas.addEventListener('mousemove', mouseMove, false);
     
-    drawRects();
+    getAllShapes();
 }
 
 function mouseDown(e) {
@@ -42,9 +64,11 @@ function mouseDown(e) {
 }
 
 function mouseUp() { 
-    rectObjects.push(new Shape(rect.startX, rect.startY, rect.w, rect.h));
+    rectObjects.push(new Shape(rect.startX, rect.startY, rect.w, rect.h, selected_category_id, selected_category_name));
     console.log(rectObjects);
-    drag = false; 
+
+    add_objects();
+    drag = false;
 }
 
 function mouseMove(e) {
@@ -66,8 +90,26 @@ function drawRects() {
         ctx.strokeRect(oRec.x, oRec.y, oRec.w, oRec.h);
     }
 }
-//
+
+const add_objects = () =>{
+
+    if (selected_category_id && rectObjects.length > 0) {
+        $.ajax({
+            url: '/controllers/MainController.php',
+            type: 'POST',
+            data: {
+                action: 'AddObjects',
+                payload: {
+                    objects: rectObjects,
+                    id_picture: document.getElementById('img_id').innerHTML
+                }
+            },
+            success: function() {
+                console.log('success');
+            }
+        });
+    }
+}
+
+
 init();
-
-// on enter click
-
