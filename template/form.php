@@ -8,7 +8,7 @@
 ?>
 
 <div class="form-group">
-    <label for="category">Select category for picture:</label>
+    <label for="category">Select category for object:</label>
     <select class="form-control form-control-sm" name="categories" id="category_select">
         <?php 
         if ($categories) {
@@ -19,7 +19,6 @@
             echo '<option value="0">No categories</option>';
         } ?>
     </select>
-    <button type="button" class="btn btn-primary" id="select_button">Select</button>
 </div>
 <div class="form-group">
     <label>Add new category:</label>
