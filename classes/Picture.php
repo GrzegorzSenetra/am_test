@@ -57,4 +57,28 @@ class Picture
         $result = $stmt->fetch();
         return $result;
     }
+
+    public function removePicture($id_picture)
+    {
+
+        $picture = $this->getPicture($id_picture);
+
+        $this->removePictureFromDisk($picture['file_path']);
+
+        $sql = 'DELETE FROM pictures WHERE id_picture = :id_picture';
+        $stmt = $this->db->pdo->prepare($sql);
+        $stmt->execute(['id_picture' => $id_picture]);
+
+        return true;
+    }
+
+    public function removePictureFromDisk($picture)
+    {
+        $path = '../a_signs/' . $picture;
+
+        print(file_exists($path));
+        if (file_exists($path)) {
+            unlink($path);
+        }
+    }
 }
