@@ -6,9 +6,6 @@ var rectObjects = [];
 let drag = false;
 let background = null;
 
-let selected_category_id = $('#category_select').val();
-let selected_category_name = $( "#category_select option:selected" ).text();
-
 let rect = {};
 
 function Shape(x, y, w, h, category_id, category_name) {
@@ -64,8 +61,13 @@ function mouseDown(e) {
 }
 
 function mouseUp() { 
+    let selected_category_id = $('#category_select').val();
+    let selected_category_name = $( "#category_select option:selected" ).text();
+
     rectObjects.push(new Shape(rect.startX, rect.startY, rect.w, rect.h, selected_category_id, selected_category_name));
     console.log(rectObjects);
+
+    drawRects();
 
     add_objects();
     drag = false;
@@ -86,12 +88,28 @@ function mouseMove(e) {
 function drawRects() {
     for (let i = 0; i < rectObjects.length; i++) {
         let oRec = rectObjects[i];
+
+        
+
         ctx.strokeStyle = 'red';
         ctx.strokeRect(oRec.x, oRec.y, oRec.w, oRec.h);
+
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'red';
+        ctx.font="24px Georgia";
+        ctx.textAlign="center"; 
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "red";
+        ctx.fillText(oRec.category_name, parseInt(oRec.x)+(parseInt(oRec.w/2)), parseInt(oRec.y)+(parseInt(oRec.h/2)));
     }
 }
 
 const add_objects = () =>{
+
+    console.log("rectObjects");
+    console.log(rectObjects);
+
+    let selected_category_id = $('#category_select').val();
 
     if (selected_category_id && rectObjects.length > 0) {
         $.ajax({
