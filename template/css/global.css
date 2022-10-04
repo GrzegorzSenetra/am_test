@@ -1,0 +1,12 @@
+.content {
+    width: 100%;
+    max-width: 100%;
+}
+
+#canvas {
+    width: auto;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
