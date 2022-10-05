@@ -76,6 +76,7 @@ class Picture
     {
         $path = '../a_signs/' . $picture;
 
+        print(file_exists($path));
         if (file_exists($path)) {
             unlink($path);
         }
