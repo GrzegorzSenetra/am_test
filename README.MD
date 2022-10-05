@@ -1,9 +1,13 @@
 # Łowca znaków
 []: # (c) 2022 by [Grzegorz Senetra]
 
-schemat tabel:
+## Installation:
 
+To install you need to import postgreSQL database from ./dbpostgres file.
 
+## Table schema and sample data:
+
+```sh
  public | categories                 | table    | postgres
  public | categories_id_category_seq | sequence | postgres
  public | p_objects                  | table    | postgres
@@ -52,4 +56,5 @@ postgres=# select * from pictures;
          19 | Screenshot from 2022-10-05 00-09-13.png | 
 (2 rows)
 
+```
 
